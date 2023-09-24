@@ -45,7 +45,8 @@ RUN curl -s https://dl.google.com/android/repository/commandlinetools-linux-${VE
 RUN mkdir -p $ANDROID_SDK_ROOT/licenses/ \
  && echo "8933bad161af4178b1185d1a37fbf41ea5269c55\nd56f5187479451eabf01fb78af6dfcb131a6481e\n24333f8a63b6825ea9c5514f83c2829b004d1fee" > $ANDROID_SDK_ROOT/licenses/android-sdk-license \
  && echo "84831b9409646a918e30573bab4c9c91346d8abd\n504667f4c0de7af1a06de9f4b1727b84351f2910" > $ANDROID_SDK_ROOT/licenses/android-sdk-preview-license \
- && yes | sdkmanager --licenses >/dev/null
+ && yes | sdkmanager --licenses >/dev/null \
+ && sdkmanager "platforms;android-29" "platforms;android-30" "platforms;android-31" "platforms;android-33" "build-tools;30.0.3" &&
 
 RUN mkdir -p /root/.android \
  && touch /root/.android/repositories.cfg \

@@ -1,6 +1,8 @@
 FROM ubuntu:20.04
 MAINTAINER Sergey Klimovich
 
+ENV VERSION_TOOLS "8512546"
+
 ENV ANDROID_SDK_ROOT "/sdk"
 # Keep alias for compatibility
 ENV ANDROID_HOME "${ANDROID_SDK_ROOT}"

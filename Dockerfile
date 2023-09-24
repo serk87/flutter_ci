@@ -3,7 +3,7 @@ MAINTAINER Sergey Klimovich
 
 USER root
 
-ENV flutter_version "3.13"
+ENV flutter_version "3.13.5"
 
 ENV VERSION_TOOLS "8512546"
 

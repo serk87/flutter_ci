@@ -1,12 +1,21 @@
 FROM ubuntu:20.04
 MAINTAINER Sergey Klimovich
 
+USER root
+
+ARG flutter_version
+
 ENV VERSION_TOOLS "8512546"
 
 ENV ANDROID_SDK_ROOT "/sdk"
 # Keep alias for compatibility
 ENV ANDROID_HOME "${ANDROID_SDK_ROOT}"
 ENV PATH "$PATH:${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${ANDROID_SDK_ROOT}/platform-tools"
+ENV FLUTTER_HOME=${HOME}/sdks/flutter \
+    FLUTTER_VERSION=$flutter_version
+ENV FLUTTER_ROOT=$FLUTTER_HOME
+
+ENV PATH ${PATH}:${FLUTTER_HOME}/bin:${FLUTTER_HOME}/bin/cache/dart-sdk/bin
 
 RUN apt-get -qq update \
  && apt-get install -qqy --no-install-recommends \
@@ -43,3 +52,9 @@ RUN mkdir -p $ANDROID_SDK_ROOT/licenses/ \
 RUN mkdir -p /root/.android \
  && touch /root/.android/repositories.cfg \
  && sdkmanager --update
+ 
+RUN git clone --depth 1 --branch ${FLUTTER_VERSION} https://github.com/flutter/flutter.git ${FLUTTER_HOME}
+
+RUN yes | flutter doctor --android-licenses \
+    && flutter doctor \
+    && chown -R root:root ${FLUTTER_HOME}

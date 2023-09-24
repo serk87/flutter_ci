@@ -36,9 +36,6 @@ RUN apt-get -qq update \
 RUN locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
-RUN rm -f /etc/ssl/certs/java/cacerts; \
-    /var/lib/dpkg/info/ca-certificates-java.postinst configure
-
 RUN curl -s https://dl.google.com/android/repository/commandlinetools-linux-${VERSION_TOOLS}_latest.zip > /cmdline-tools.zip \
  && mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools \
  && unzip /cmdline-tools.zip -d ${ANDROID_SDK_ROOT}/cmdline-tools \
@@ -58,4 +55,4 @@ RUN git clone --depth 1 --branch ${FLUTTER_VERSION} https://github.com/flutter/f
 
 RUN yes | flutter doctor --android-licenses \
     && flutter doctor \
-    && chown -R root:root ${FLUTTER_HOME}
+    && chown -R root:root ${FLUTTER_HOME} && flutter config --android-sdk ${ANDROID_SDK_ROOT}

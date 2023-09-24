@@ -54,5 +54,4 @@ RUN mkdir -p /root/.android \
 RUN git clone --depth 1 --branch ${FLUTTER_VERSION} https://github.com/flutter/flutter.git ${FLUTTER_HOME}
 
 RUN yes | flutter doctor --android-licenses \
-    && flutter doctor \
-    && chown -R root:root ${FLUTTER_HOME} && flutter config --android-sdk ${ANDROID_SDK_ROOT}
+    && chown -R root:root ${FLUTTER_HOME} && flutter config --android-sdk ${ANDROID_SDK_ROOT} && flutter doctor \

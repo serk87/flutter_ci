@@ -5,7 +5,7 @@ USER root
 
 ENV flutter_version "3.13.5"
 
-ENV VERSION_TOOLS "8512546"
+ENV VERSION_TOOLS "10406996"
 
 ENV ANDROID_SDK_ROOT "/sdk"
 # Keep alias for compatibility

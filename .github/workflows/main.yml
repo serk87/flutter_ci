@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_TAG: serk87/flutter_ci:3.10.6
+  IMAGE_TAG: serk87/flutter_ci:3.16.0
 
 jobs:
   build:
